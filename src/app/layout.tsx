@@ -13,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${lato.className} antialiased`}>{children}</body>
+      <body className={`${lato.className} antialiased bg-purple-50`}>
+        {children}
+      </body>
     </html>
   );
 }

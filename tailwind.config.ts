@@ -18,7 +18,8 @@ export default {
           600: '#2F6FEB',
         },
         mainColor: '#662E9B',
-        secundaryGray:'#606060'
+        secundaryGray:'#606060',
+        secondaryPurple:"#E8D9FB"
       },
     },
     keyframes: {

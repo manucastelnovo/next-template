@@ -1,4 +1,5 @@
 import SideNav from "@/ui/dashboard/sidenav";
+import NavComponent from "@/ui/nav";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -6,7 +7,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="w-full flex-none md:w-[312px]">
         <SideNav />
       </div>
-      <div className="flex-grow p6 md:overflow-y-auto md:p-12">{children}</div>
+      <div className="flex-grow md:overflow-y-auto">
+        <NavComponent />
+        <div className="flex-grow md:overflow-y-auto p-6 md:p-8">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }

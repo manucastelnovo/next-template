@@ -4,10 +4,13 @@ import { PowerIcon, Cog8ToothIcon } from "@heroicons/react/24/outline";
 import NavLinks from "./nav-links";
 import AcmeLogo from "../acme-logo";
 import { logout } from "@/lib/session";
+import { lato } from "@/ui/fonts";
 
 export default function SideNav() {
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2 bg-mainColor">
+    <div
+      className={`${lato.className} text-white flex h-full flex-col px-3 py-4 md:px-2 bg-mainColor`}
+    >
       <Link
         className="mb-2 flex h-10 items-end justify-start rounded-md p-4 md:h-16"
         href="/"
