@@ -12,7 +12,7 @@ export default function Page() {
         alt="login"
         width={206}
         height={72}
-        className="hidden md:block"
+        className="hidden md:block h-auto w-auto"
       />
     </main>
   );

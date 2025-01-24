@@ -1,15 +1,21 @@
-// import {
-//   AtSymbolIcon,
-//   KeyIcon,
-//   ExclamationCircleIcon,
-// } from "@heroicons/react/24/outline";
-// import { ArrowRightIcon } from "@heroicons/react/20/solid";
+"use client";
+import { useAuthStore } from "@/store/auth/auth.store";
 import { Button } from "./button";
 import { roboto } from "./fonts";
 
 export default function LoginForm() {
+  const loginUser = useAuthStore((state) => state.loginUser);
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const { email, password } = event.target as typeof event.target & {
+      email: { value: string };
+      password: { value: string };
+    };
+    await loginUser(email.value, password.value);
+  };
+
   return (
-    <form className="space-y-3">
+    <form className="space-y-3" onSubmit={onSubmit}>
       <div className="flex-1 rounded-lg md:w-[480px] md:h-[454px] bg-purple-200 px-12 pb-4 pt-12">
         <h1
           className={`${roboto.className} antialiased w-full font-bold text-5xl mb-8 text-center`}
@@ -43,7 +49,9 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <Button className="mt-4 w-full h-14 text-xl">Iniciar Sesión</Button>
+        <Button type="submit" className="mt-4 w-full h-14 text-xl">
+          Iniciar Sesión
+        </Button>
         <hr className="mt-8 mb-10 border-secundaryGray" />
         {/* <div className="flex h-8 items-end space-x-1"> */}
         {/* Add form errors here */}
