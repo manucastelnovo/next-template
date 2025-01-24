@@ -1,27 +1,17 @@
-import { AxiosError } from "axios";
-import { nestApi } from "./http.service";
+import { nestApi } from "@/lib/http";
+import { createSession } from "@/lib/session";
+import { redirect } from "next/navigation";
 
-export interface LoginResponse {
-    accessToken: string;
-}
+export async function login(formData: FormData) {
+  const { data } = await nestApi.post("/auth/login", {
+    email: formData.get("email"),
+    password: formData.get("password"),
+  });
+  const { accessToken } = data;
+  if (!accessToken) {
+    throw new Error("Invalid token");
+  }
+  await createSession(accessToken);
 
-
-export class AuthService {
-    static async login(email:string, password:string) : Promise<LoginResponse> {
-
-        try {
-            const response = await nestApi.post('/auth/login', { email, password });
-            return response.data;
-            
-        } catch (error) {
-            if ( error instanceof AxiosError){
-                console.log(error.response?.data);
-                throw new Error(error.response?.data.message);
-            }
-            throw new Error('Failed to login');
-            
-        }
-        const response = await nestApi.post('/auth/login', { email, password });
-        return response.data;
-    }
+  redirect("/dashboard/home");
 }
