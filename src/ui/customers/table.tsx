@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FormattedCustomersTable } from "@/app/lib/definitions";
+import { FormattedCustomersTable } from "@/types/definitions";
 import { lato } from "../fonts";
 import Search from "../search";
 
