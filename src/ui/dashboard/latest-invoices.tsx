@@ -1,5 +1,5 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
-import { LatestInvoice } from "@/app/lib/definitions";
+import { LatestInvoice } from "@/types/definitions";
 import { lato } from "../fonts";
 import clsx from "clsx";
 import Image from "next/image";
