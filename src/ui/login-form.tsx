@@ -1,21 +1,16 @@
-"use client";
-import { useAuthStore } from "@/store/auth/auth.store";
+import { login } from "@/services/auth.service";
 import { Button } from "./button";
 import { roboto } from "./fonts";
 
 export default function LoginForm() {
-  const loginUser = useAuthStore((state) => state.loginUser);
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const { email, password } = event.target as typeof event.target & {
-      email: { value: string };
-      password: { value: string };
-    };
-    await loginUser(email.value, password.value);
-  };
-
   return (
-    <form className="space-y-3" onSubmit={onSubmit}>
+    <form
+      className="space-y-3"
+      action={async (formData) => {
+        "use server";
+        await login(formData);
+      }}
+    >
       <div className="flex-1 rounded-lg md:w-[480px] md:h-[454px] bg-purple-200 px-12 pb-4 pt-12">
         <h1
           className={`${roboto.className} antialiased w-full font-bold text-5xl mb-8 text-center`}
